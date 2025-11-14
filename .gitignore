@@ -1,0 +1,11 @@
+# Virtual Environment Folders
+aws/
+venv/
+.venv/
+
+# Compiled Python
+__pycache__/
+*.pyc
+
+# Operating System Files
+.DS_Store
