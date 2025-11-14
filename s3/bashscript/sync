@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#where we'll store these file
+OUTPUT_DIR="tmp_file"
+
+#remove old files inside the folder
+rm -r "$OUTPUT_DIR"
+
+#create folder if doesn't exist
+mkdir -p "$OUTPUT_DIR"
+
+#generate random number between 5 and 10
+COUNT=$(( RANDOM % 6 + 5 ))
+echo $COUNT
+
+for ((i=1; i<=COUNT; i++))
+do
+    OUTPUT_FILE="$OUTPUT_DIR/file$i.txt"
+    echo $RANDOM > $OUTPUT_FILE
+    echo $OUTPUT_FILE
+done
+
+echo "done"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#"This script delete an S3 bucket using AWS CLI."
+
+# Check if bucket name is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bucket-name>"
+  exit 1
+fi
+BUCKET_NAME=$1
+REGION="us-east-1"
+echo "Deleting S3 bucket: $BUCKET_NAME in region: $REGION"
+awslocal s3api delete-bucket --bucket "$BUCKET_NAME" --output text
+echo "Bucket $BUCKET_NAME deleted successfully."

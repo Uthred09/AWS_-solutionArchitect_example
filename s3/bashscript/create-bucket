@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#"This script creates an S3 bucket using AWS CLI."
+
+# Check if bucket name is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bucket-name>"
+  exit 1
+fi
+BUCKET_NAME=$1
+REGION="us-east-1"
+echo "Creating S3 bucket: $BUCKET_NAME in region: $REGION"
+awslocal s3api create-bucket --bucket "$BUCKET_NAME" --region "$REGION" --output text
+echo "Bucket $BUCKET_NAME created successfully."
