@@ -6,8 +6,19 @@ if [ -z "$1" ]; then
   echo "Usage: $0 <bucket-name>"
   exit 1
 fi
-bucket= $1
-key= $2
-body= $3
 
-awslocal s3api put-object --bucket $bucket --key $key --body $body
+if [ -z "$2" ]; then
+  echo "Usage: $0 <File-Path>"
+  exit 1
+fi
+
+BUCKET_NAME=$1
+FILE_NAME=$2
+
+awslocal s3api put-object \
+--bucket $BUCKET_NAME \
+--key "$(basename "$FILE_NAME")" \
+--body $FILE_NAME 
+
+#key is the destination path/name in S3
+#body is the source file on local machine(file to upload)

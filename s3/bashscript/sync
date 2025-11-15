@@ -17,7 +17,15 @@ for ((i=1; i<=COUNT; i++))
 do
     OUTPUT_FILE="$OUTPUT_DIR/file$i.txt"
     echo $RANDOM > $OUTPUT_FILE
-    echo $OUTPUT_FILE
 done
 
-echo "done"
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bucket-name>"
+  exit 1
+fi
+
+BUCKET_NAME=$1
+
+awslocal s3 sync "$OUTPUT_DIR" s3://$BUCKET_NAME
+
+

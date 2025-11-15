@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#"This script delete an S3 bucket object using AWS CLI."
+
+# Check if bucket name is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bucket-name>"
+  exit 1
+fi
+
+
+BUCKET_NAME=$1
+
+printf '{"Objects":' > tmp_file/delete.json
+awslocal s3api list-objects \
+ --bucket $BUCKET_NAME \
+ --query 'Contents[].{Key: Key}' >> tmp_file/delete.json
+printf ',"Quiet":false}' >> tmp_file/delete.json
+
+awslocal s3api delete-objects \
+--bucket $BUCKET_NAME \
+--delete file://tmp_file/delete.json
+

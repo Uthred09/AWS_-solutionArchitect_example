@@ -2,4 +2,6 @@
 
 #list all the s3 buckets
 
-awslocal s3api list-buckets --query Buckets --output table
+awslocal s3api list-buckets \
+--query Buckets \
+--output table
