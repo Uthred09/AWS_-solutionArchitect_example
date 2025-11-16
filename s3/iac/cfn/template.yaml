@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Create an S3 bucket using CloudFormation
+
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-s3-bucket.html#cfn-s3-bucket-versioningconfiguration
+
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    #no need to provide an bucket name aws will generate a random name for us
+

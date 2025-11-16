@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "==list Stack via cfn"
+
+awslocal cloudformation list-stacks

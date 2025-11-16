@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo "==deploy s3 bucket via cfn"
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <stack-name>"
+  exit 1
+fi
+
+TEMPLATE_PATH=s3/iac/cfn/template.yaml
+STACK=$1
+awslocal cloudformation deploy \
+--template-file $TEMPLATE_PATH \
+--region ca-central-1 \
+--stack-name $STACK

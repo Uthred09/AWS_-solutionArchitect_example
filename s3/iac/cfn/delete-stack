@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo "==delet s3 stack via cfn"
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <stack-name>"
+  exit 1
+fi
+
+STACK=$1
+REGION='ap-south-1'
+
+awslocal cloudformation delete-stack \
+--region $REGION \
+--stack-name $STACK
